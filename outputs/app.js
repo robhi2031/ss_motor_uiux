@@ -26,15 +26,59 @@ const seedData = {
     { id: "ctype-toko", code: "JP-TK", name: "Toko", priceKey: "price3" },
     { id: "ctype-reseller-2", code: "JP-R2", name: "Reseller Kelas 2", priceKey: "price4" }
   ],
+  employees: [
+    {
+      id: "emp-1",
+      code: "KRY-001",
+      name: "Andi Saputra",
+      address: "Jl. Workshop Autolight No. 12",
+      position: "Teknisi Lampu",
+      phone: "081234567801",
+      email: "andi@ssautolight.demo",
+      bankAccount: "BCA 1234567890 a.n Andi Saputra",
+      joinDate: "2025-09-10",
+      payDay: 25,
+      note: "Spesialis projector dan wiring.",
+      status: "Aktif"
+    },
+    {
+      id: "emp-2",
+      code: "KRY-002",
+      name: "Rina Lestari",
+      address: "Jl. Cabang Selatan No. 7",
+      position: "Kasir",
+      phone: "081234567802",
+      email: "rina@ssautolight.demo",
+      bankAccount: "BRI 0987654321 a.n Rina Lestari",
+      joinDate: "2026-01-05",
+      payDay: 30,
+      note: "Handle transaksi dan laporan harian.",
+      status: "Aktif"
+    },
+    {
+      id: "emp-3",
+      code: "KRY-003",
+      name: "Dimas Pratama",
+      address: "Jl. Magang Raya No. 4",
+      position: "Helper",
+      phone: "081234567803",
+      email: "dimas@ssautolight.demo",
+      bankAccount: "Mandiri 1122334455 a.n Dimas Pratama",
+      joinDate: "2026-06-01",
+      payDay: 15,
+      note: "Program magang teknisi.",
+      status: "Magang"
+    }
+  ],
   products: [
-    { id: "prd-1", code: "LED-H4", name: "LED Headlamp H4 80W", thumbnail: fallbackThumb, supplierId: "sup-shopee", categoryId: "cat-led", warehouseId: "wh-utama", cost: 320000, price1: 450000, price2: 425000, price3: 400000, price4: 380000, stock: 12, minStock: 3 },
-    { id: "prd-2", code: "PRJ-25", name: "Projector Bi-LED 2.5 inch", thumbnail: fallbackThumb, supplierId: "sup-bullaes", categoryId: "cat-projector", warehouseId: "wh-utama", cost: 900000, price1: 1250000, price2: 1180000, price3: 1100000, price4: 1050000, stock: 5, minStock: 2 },
-    { id: "prd-3", code: "DRL-AQ", name: "DRL Acrylic Custom", thumbnail: fallbackThumb, supplierId: "sup-lain", categoryId: "cat-drl", warehouseId: "wh-utama", cost: 210000, price1: 350000, price2: 330000, price3: 315000, price4: 300000, stock: 8, minStock: 2 },
-    { id: "prd-4", code: "FGL-YLW", name: "Foglamp Yellow Lens", thumbnail: fallbackThumb, supplierId: "sup-shopee", categoryId: "cat-led", warehouseId: "wh-cabang", cost: 470000, price1: 650000, price2: 620000, price3: 590000, price4: 560000, stock: 4, minStock: 2 },
-    { id: "prd-5", code: "ANG-RGB", name: "Angel Eyes RGB", thumbnail: fallbackThumb, supplierId: "sup-lain", categoryId: "cat-drl", warehouseId: "wh-cabang", cost: 160000, price1: 275000, price2: 255000, price3: 240000, price4: 225000, stock: 2, minStock: 3 },
-    { id: "prd-6", code: "WRP-HAR", name: "Wiring Harness Relay", thumbnail: fallbackThumb, supplierId: "sup-lain", categoryId: "cat-accessory", warehouseId: "wh-utama", cost: 70000, price1: 125000, price2: 115000, price3: 105000, price4: 95000, stock: 18, minStock: 5 },
-    { id: "prd-7", code: "SEAL-BT", name: "Sealant Butyl Lampu", thumbnail: fallbackThumb, supplierId: "sup-china", categoryId: "cat-accessory", warehouseId: "wh-cabang", cost: 52000, price1: 95000, price2: 88000, price3: 80000, price4: 75000, stock: 9, minStock: 4 },
-    { id: "prd-8", code: "CAN-H11", name: "Canbus Decoder H11", thumbnail: fallbackThumb, supplierId: "sup-bullaes", categoryId: "cat-accessory", warehouseId: "wh-utama", cost: 115000, price1: 180000, price2: 168000, price3: 155000, price4: 145000, stock: 7, minStock: 3 }
+    { id: "prd-1", code: "LED-H4", name: "LED Headlamp H4 80W", thumbnail: fallbackThumb, supplierId: "sup-shopee", categoryId: "cat-led", warehouseId: "wh-utama", unit: "PCS", cost: 320000, price1: 450000, price2: 425000, price3: 400000, price4: 380000, stock: 12, minStock: 3 },
+    { id: "prd-2", code: "PRJ-25", name: "Projector Bi-LED 2.5 inch", thumbnail: fallbackThumb, supplierId: "sup-bullaes", categoryId: "cat-projector", warehouseId: "wh-utama", unit: "SET", cost: 900000, price1: 1250000, price2: 1180000, price3: 1100000, price4: 1050000, stock: 5, minStock: 2 },
+    { id: "prd-3", code: "DRL-AQ", name: "DRL Acrylic Custom", thumbnail: fallbackThumb, supplierId: "sup-lain", categoryId: "cat-drl", warehouseId: "wh-utama", unit: "SET", cost: 210000, price1: 350000, price2: 330000, price3: 315000, price4: 300000, stock: 8, minStock: 2 },
+    { id: "prd-4", code: "FGL-YLW", name: "Foglamp Yellow Lens", thumbnail: fallbackThumb, supplierId: "sup-shopee", categoryId: "cat-led", warehouseId: "wh-cabang", unit: "PCS", cost: 470000, price1: 650000, price2: 620000, price3: 590000, price4: 560000, stock: 4, minStock: 2 },
+    { id: "prd-5", code: "ANG-RGB", name: "Angel Eyes RGB", thumbnail: fallbackThumb, supplierId: "sup-lain", categoryId: "cat-drl", warehouseId: "wh-cabang", unit: "SET", cost: 160000, price1: 275000, price2: 255000, price3: 240000, price4: 225000, stock: 2, minStock: 3 },
+    { id: "prd-6", code: "WRP-HAR", name: "Wiring Harness Relay", thumbnail: fallbackThumb, supplierId: "sup-lain", categoryId: "cat-accessory", warehouseId: "wh-utama", unit: "PCS", cost: 70000, price1: 125000, price2: 115000, price3: 105000, price4: 95000, stock: 18, minStock: 5 },
+    { id: "prd-7", code: "SEAL-BT", name: "Sealant Butyl Lampu", thumbnail: fallbackThumb, supplierId: "sup-china", categoryId: "cat-accessory", warehouseId: "wh-cabang", unit: "ROLL", cost: 52000, price1: 95000, price2: 88000, price3: 80000, price4: 75000, stock: 9, minStock: 4 },
+    { id: "prd-8", code: "CAN-H11", name: "Canbus Decoder H11", thumbnail: fallbackThumb, supplierId: "sup-bullaes", categoryId: "cat-accessory", warehouseId: "wh-utama", unit: "PCS", cost: 115000, price1: 180000, price2: 168000, price3: 155000, price4: 145000, stock: 7, minStock: 3 }
   ],
   transactions: [
     {
@@ -85,7 +129,8 @@ const seedData = {
     barcodePrinter: "roll-76x30",
     reportPrinter: "browser",
     scannerMode: "enter",
-    scannerPrefix: ""
+    scannerPrefix: "",
+    ownerWhatsapp: ""
   }
 };
 
@@ -129,6 +174,7 @@ const els = {
   dashboardChartCaption: document.querySelector("#dashboardChartCaption"),
   dashboardSalesChart: document.querySelector("#dashboardSalesChart"),
   inventoryWarehouseFilter: document.querySelector("#inventoryWarehouseFilter"),
+  inventorySearchInput: document.querySelector("#inventorySearchInput"),
   inventoryTable: document.querySelector("#inventoryTable"),
   warehouseForm: document.querySelector("#warehouseForm"),
   warehouseIdInput: document.querySelector("#warehouseIdInput"),
@@ -156,6 +202,23 @@ const els = {
   masterCustomerTypeNameInput: document.querySelector("#masterCustomerTypeNameInput"),
   masterCustomerTypePriceInput: document.querySelector("#masterCustomerTypePriceInput"),
   masterCustomerTypeGrid: document.querySelector("#masterCustomerTypeGrid"),
+  employeeForm: document.querySelector("#employeeForm"),
+  employeeModalTitle: document.querySelector("#employeeModalTitle"),
+  employeeIdInput: document.querySelector("#employeeIdInput"),
+  employeeCodeInput: document.querySelector("#employeeCodeInput"),
+  employeeNameInput: document.querySelector("#employeeNameInput"),
+  employeeAddressInput: document.querySelector("#employeeAddressInput"),
+  employeePositionInput: document.querySelector("#employeePositionInput"),
+  employeePhoneInput: document.querySelector("#employeePhoneInput"),
+  employeeEmailInput: document.querySelector("#employeeEmailInput"),
+  employeeBankInput: document.querySelector("#employeeBankInput"),
+  employeeJoinDateInput: document.querySelector("#employeeJoinDateInput"),
+  employeePaydayInput: document.querySelector("#employeePaydayInput"),
+  employeeNoteInput: document.querySelector("#employeeNoteInput"),
+  employeeStatusInput: document.querySelector("#employeeStatusInput"),
+  employeeSearchInput: document.querySelector("#employeeSearchInput"),
+  employeeTable: document.querySelector("#employeeTable"),
+  salaryReminderPanel: document.querySelector("#salaryReminderPanel"),
   customerSearchInput: document.querySelector("#customerSearchInput"),
   customerTypeFilter: document.querySelector("#customerTypeFilter"),
   customerCount: document.querySelector("#customerCount"),
@@ -164,6 +227,7 @@ const els = {
   productForm: document.querySelector("#productForm"),
   productModalTitle: document.querySelector("#productModalTitle"),
   productIdInput: document.querySelector("#productIdInput"),
+  productUnitInput: document.querySelector("#productUnitInput"),
   productWarehouseInput: document.querySelector("#productWarehouseInput"),
   productBrandInput: document.querySelector("#productBrandInput"),
   productCategoryInput: document.querySelector("#productCategoryInput"),
@@ -259,6 +323,7 @@ const els = {
   reportPrinterInput: document.querySelector("#reportPrinterInput"),
   scannerModeInput: document.querySelector("#scannerModeInput"),
   scannerPrefixInput: document.querySelector("#scannerPrefixInput"),
+  ownerWhatsappInput: document.querySelector("#ownerWhatsappInput"),
   settingsStatus: document.querySelector("#settingsStatus"),
   paymentSuccessModal: document.querySelector("#paymentSuccessModal")
 };
@@ -286,6 +351,20 @@ function normalizeState(rawState) {
       code: type.code || `JP-${String(index + 1).padStart(3, "0")}`,
       priceKey: type.priceKey || ["price1", "price2", "price3", "price4"][index % 4]
     }));
+  normalized.employees = (rawState.employees?.length ? rawState.employees : seedData.employees).map((employee, index) => ({
+    id: employee.id || `emp-${crypto.randomUUID()}`,
+    code: employee.code || `KRY-${String(index + 1).padStart(3, "0")}`,
+    name: employee.name || "-",
+    address: employee.address || "",
+    position: employee.position || "",
+    phone: employee.phone || "",
+    email: employee.email || "",
+    bankAccount: employee.bankAccount || "",
+    joinDate: employee.joinDate || todayKey(),
+    payDay: Math.min(Math.max(Number(employee.payDay || 25), 1), 31),
+    note: employee.note || "",
+    status: employee.status || "Aktif"
+  }));
   const normalizeCustomerTypeName = (name) => {
     if (normalized.customerTypes.some((type) => type.name === name)) return name;
     const onlineType = normalized.customerTypes.find((type) => type.name.toLowerCase().includes("online"));
@@ -301,6 +380,7 @@ function normalizeState(rawState) {
       supplierId: product.supplierId || product.brandId || normalized.suppliers[index % normalized.suppliers.length]?.id,
       brandId: product.supplierId || product.brandId || normalized.suppliers[index % normalized.suppliers.length]?.id,
       categoryId: product.categoryId || normalized.categories[index % normalized.categories.length]?.id,
+      unit: (product.unit || "PCS").toUpperCase(),
       cost: Number(product.cost ?? Math.round(Number(product.price || basePrice) * 0.7)),
       price1: basePrice,
       price2: Number(product.price2 ?? Math.round(basePrice * 0.95)),
@@ -324,6 +404,7 @@ function normalizeState(rawState) {
         ...item,
         thumbnail: item.thumbnail || fallbackThumb,
         code: item.code || productsById.get(item.productId)?.code || "-",
+        unit: item.unit || productsById.get(item.productId)?.unit || "PCS",
         warehouseId: item.warehouseId || productsById.get(item.productId)?.warehouseId || ""
       }))
   }));
@@ -706,7 +787,7 @@ function updateStockProductInfo() {
   els.stockProductInfo.innerHTML = `
     <strong>${product.code} - ${product.name}</strong>
     <span>Supplier: ${brandName(product.brandId)} / Gudang: ${warehouseName(product.warehouseId)}</span>
-    <span>Stok saat ini: ${product.stock} / Modal: ${formatMoney(product.cost)}</span>
+    <span>Satuan: ${product.unit || "PCS"} / Stok saat ini: ${product.stock} ${product.unit || "PCS"} / Modal: ${formatMoney(product.cost)}</span>
   `;
   els.stockCostInput.value = product.cost;
   els.stockPrice1Input.value = product.price1;
@@ -770,6 +851,7 @@ function renderSettings() {
   els.reportPrinterInput.value = state.settings.reportPrinter || "browser";
   els.scannerModeInput.value = state.settings.scannerMode || "enter";
   els.scannerPrefixInput.value = state.settings.scannerPrefix || "";
+  els.ownerWhatsappInput.value = state.settings.ownerWhatsapp || "";
 }
 
 function saveSettings(event) {
@@ -779,9 +861,11 @@ function saveSettings(event) {
     barcodePrinter: els.barcodePrinterInput.value,
     reportPrinter: els.reportPrinterInput.value,
     scannerMode: els.scannerModeInput.value,
-    scannerPrefix: els.scannerPrefixInput.value.trim()
+    scannerPrefix: els.scannerPrefixInput.value.trim(),
+    ownerWhatsapp: els.ownerWhatsappInput.value.trim()
   };
   saveState();
+  renderEmployees();
   els.settingsStatus.textContent = "Pengaturan tersimpan.";
   setTimeout(() => {
     els.settingsStatus.textContent = "";
@@ -864,7 +948,112 @@ function renderMasterPages() {
       </td>
     </tr>
   `).join("");
+  renderEmployees();
   updateRoleAccess();
+}
+
+function employeeStatusClass(status) {
+  return {
+    Aktif: "text-bg-success",
+    Magang: "text-bg-info",
+    "Tidak Aktif/ Keluar": "text-bg-secondary"
+  }[status] || "text-bg-light";
+}
+
+function employeePaydayText(payDay) {
+  return `Tanggal ${payDay} setiap bulan`;
+}
+
+function normalizeWaNumber(value) {
+  const digits = String(value || "").replace(/\D/g, "");
+  if (!digits) return "";
+  if (digits.startsWith("0")) return `62${digits.slice(1)}`;
+  return digits;
+}
+
+function effectivePaydayDate(year, monthIndex, payDay) {
+  const lastDay = new Date(year, monthIndex + 1, 0).getDate();
+  return new Date(year, monthIndex, Math.min(Number(payDay || 1), lastDay));
+}
+
+function salaryReminderEmployees(referenceDate = new Date()) {
+  const tomorrow = new Date(referenceDate);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  return state.employees.filter((employee) => {
+    if (employee.status === "Tidak Aktif/ Keluar") return false;
+    const payday = effectivePaydayDate(tomorrow.getFullYear(), tomorrow.getMonth(), employee.payDay);
+    return todayKey(payday) === todayKey(tomorrow);
+  });
+}
+
+function salaryReminderMessage(employee) {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  return `Reminder gajian SS Autolight:\nBesok (${tomorrow.toLocaleDateString("id-ID")}) jadwal gajian ${employee.name} (${employee.position}).\nMohon disiapkan.`;
+}
+
+function salaryReminderLink(employee) {
+  const ownerWa = normalizeWaNumber(state.settings.ownerWhatsapp);
+  if (!ownerWa) return "";
+  return `https://wa.me/${ownerWa}?text=${encodeURIComponent(salaryReminderMessage(employee))}`;
+}
+
+function renderEmployees() {
+  const query = els.employeeSearchInput.value.trim().toLowerCase();
+  const employees = state.employees
+    .filter((employee) => {
+      const haystack = `${employee.code} ${employee.name} ${employee.address} ${employee.position} ${employee.phone} ${employee.email} ${employee.bankAccount} ${employee.status}`.toLowerCase();
+      return !query || haystack.includes(query);
+    })
+    .sort((a, b) => a.code.localeCompare(b.code, "id"));
+
+  const reminders = salaryReminderEmployees();
+  els.salaryReminderPanel.innerHTML = reminders.length ? `
+    <div class="salary-reminder-card">
+      <div>
+        <strong>Reminder Gajian Besok</strong>
+        <span>${reminders.length} karyawan perlu disiapkan gaji. ${state.settings.ownerWhatsapp ? "Pesan WA siap dikirim ke owner." : "Lengkapi No. WA Owner di Pengaturan."}</span>
+      </div>
+      <div class="salary-reminder-list">
+        ${reminders.map((employee) => {
+          const link = salaryReminderLink(employee);
+          return `
+            <div class="salary-reminder-item">
+              <span>${employee.name} / ${employee.position} / ${employeePaydayText(employee.payDay)}</span>
+              ${link ? `<a class="btn btn-sm btn-success" href="${link}" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> Kirim WA</a>` : `<button class="btn btn-sm btn-outline-secondary" type="button" disabled>WA Owner belum diatur</button>`}
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  ` : `
+    <div class="salary-reminder-card muted">
+      <div>
+        <strong>Tidak ada reminder gajian H-1 hari ini</strong>
+        <span>Sistem mengecek karyawan aktif/magang berdasarkan tanggal gajian masing-masing.</span>
+      </div>
+    </div>
+  `;
+
+  els.employeeTable.innerHTML = employees.map((employee) => `
+    <tr>
+      <td><strong>${employee.code}</strong></td>
+      <td>${employee.name}</td>
+      <td>${employee.address || "-"}</td>
+      <td>${employee.position || "-"}</td>
+      <td>${employee.phone || "-"}</td>
+      <td>${employee.email || "-"}</td>
+      <td>${employee.bankAccount || "-"}</td>
+      <td>${employee.joinDate ? new Date(employee.joinDate).toLocaleDateString("id-ID") : "-"}</td>
+      <td>${employeePaydayText(employee.payDay)}</td>
+      <td>${employee.note || "-"}</td>
+      <td><span class="badge ${employeeStatusClass(employee.status)}">${employee.status}</span></td>
+      <td class="text-end">
+        <button class="btn btn-sm btn-outline-primary manager-only" data-edit-employee="${employee.id}" type="button" title="Edit karyawan"><i class="bi bi-pencil"></i></button>
+        <button class="btn btn-sm btn-outline-danger manager-only" data-delete-employee="${employee.id}" type="button" title="Hapus karyawan"><i class="bi bi-trash"></i></button>
+      </td>
+    </tr>
+  `).join("") || `<tr><td colspan="12" class="text-center text-muted py-4">Tidak ada data karyawan.</td></tr>`;
 }
 
 function renderCustomers() {
@@ -1099,7 +1288,12 @@ function renderFallbackSalesLineChart(dayTotals, maxTotal) {
 
 function renderInventory() {
   const filter = els.inventoryWarehouseFilter.value || "all";
-  const products = filter === "all" ? state.products : state.products.filter((product) => product.warehouseId === filter);
+  const query = els.inventorySearchInput.value.trim().toLowerCase();
+  const products = (filter === "all" ? state.products : state.products.filter((product) => product.warehouseId === filter))
+    .filter((product) => {
+      const haystack = `${product.code} ${product.name} ${product.unit || "PCS"} ${brandName(product.brandId)} ${categoryName(product.categoryId)} ${warehouseName(product.warehouseId)}`.toLowerCase();
+      return !query || haystack.includes(query);
+    });
   els.inventoryTable.innerHTML = products.map((product) => {
     const status = stockStatus(product);
     return `
@@ -1107,6 +1301,7 @@ function renderInventory() {
         <td><strong>${product.code}</strong></td>
         <td><img class="thumb thumb-sm" src="${product.thumbnail || fallbackThumb}" alt="${product.name}" onerror="this.src='${fallbackThumb}'"></td>
         <td>${product.name}</td>
+        <td><span class="badge text-bg-light">${product.unit || "PCS"}</span></td>
         <td>${brandName(product.brandId)}</td>
         <td>${categoryName(product.categoryId)}</td>
         <td>${warehouseName(product.warehouseId)}</td>
@@ -1115,7 +1310,7 @@ function renderInventory() {
         <td class="text-end">${formatMoney(product.price2)}</td>
         <td class="text-end">${formatMoney(product.price3)}</td>
         <td class="text-end">${formatMoney(product.price4)}</td>
-        <td class="text-end">${product.stock}</td>
+        <td class="text-end">${product.stock} ${product.unit || "PCS"}</td>
         <td class="text-end">${product.minStock}</td>
         <td><span class="badge badge-stock ${status.className}">${status.label}</span></td>
         <td class="text-end">
@@ -1127,7 +1322,7 @@ function renderInventory() {
         </td>
       </tr>
     `;
-  }).join("") || `<tr><td colspan="15" class="text-center text-muted py-4">Tidak ada barang pada filter ini.</td></tr>`;
+  }).join("") || `<tr><td colspan="16" class="text-center text-muted py-4">Tidak ada barang pada filter ini.</td></tr>`;
   updateRoleAccess();
 }
 
@@ -1135,7 +1330,7 @@ function filteredProductsForTransaction() {
   const query = els.productSearchInput.value.trim().toLowerCase();
   const category = els.transactionCategoryFilter.value || "all";
   return state.products.filter((product) => {
-    const haystack = `${product.code} ${product.name} ${brandName(product.brandId)} ${categoryName(product.categoryId)}`.toLowerCase();
+    const haystack = `${product.code} ${product.name} ${product.unit || "PCS"} ${brandName(product.brandId)} ${categoryName(product.categoryId)}`.toLowerCase();
     return product.stock > 0 && (category === "all" || product.categoryId === category) && (!query || haystack.includes(query));
   });
 }
@@ -1163,7 +1358,7 @@ function renderCart() {
       <img class="thumb thumb-xs" src="${item.thumbnail || fallbackThumb}" alt="${item.name}" onerror="this.src='${fallbackThumb}'">
       <div>
         <strong>${item.name}</strong>
-        <span>${item.code} / ${formatMoney(item.price)}</span>
+        <span>${item.code} / ${formatMoney(item.price)} / ${item.unit || "PCS"}</span>
       </div>
       <div class="qty-control">
         <button class="btn btn-sm btn-light" data-decrease-cart="${index}" type="button" title="Kurangi"><i class="bi bi-dash"></i></button>
@@ -1358,6 +1553,7 @@ function renderReportProduct(transactions) {
   setReportHead([
     { label: "Kode" },
     { label: "Barang" },
+    { label: "Satuan" },
     { label: "Gudang" },
     { label: "Qty", className: "text-end" },
     { label: "Omzet", className: "text-end" }
@@ -1369,6 +1565,7 @@ function renderReportProduct(transactions) {
       const current = groups.get(item.productId) || {
         code: item.code || product?.code || "-",
         name: item.name || product?.name || "-",
+        unit: item.unit || product?.unit || "PCS",
         warehouseId: item.warehouseId || product?.warehouseId || "",
         qty: 0,
         total: 0
@@ -1382,11 +1579,12 @@ function renderReportProduct(transactions) {
     <tr>
       <td><strong>${group.code}</strong></td>
       <td>${group.name}</td>
+      <td>${group.unit}</td>
       <td>${warehouseName(group.warehouseId)}</td>
-      <td class="text-end">${group.qty}</td>
+      <td class="text-end">${group.qty} ${group.unit}</td>
       <td class="text-end">${formatMoney(group.total)}</td>
     </tr>
-  `).join("") || emptyReportRow(5);
+  `).join("") || emptyReportRow(6);
 }
 
 function renderReportCustomer(transactions) {
@@ -1723,6 +1921,73 @@ function deleteCustomerType(id) {
   renderAll();
 }
 
+function resetEmployeeForm() {
+  els.employeeForm.reset();
+  els.employeeIdInput.value = "";
+  els.employeeCodeInput.value = `KRY-${String(state.employees.length + 1).padStart(3, "0")}`;
+  els.employeeJoinDateInput.value = todayKey();
+  els.employeePaydayInput.value = 25;
+  els.employeeStatusInput.value = "Aktif";
+  els.employeeModalTitle.textContent = "Tambah Karyawan";
+}
+
+function editEmployee(id) {
+  const employee = state.employees.find((entry) => entry.id === id);
+  if (!employee) return;
+  els.employeeModalTitle.textContent = "Edit Karyawan";
+  els.employeeIdInput.value = employee.id;
+  els.employeeCodeInput.value = employee.code || "";
+  els.employeeNameInput.value = employee.name || "";
+  els.employeeAddressInput.value = employee.address || "";
+  els.employeePositionInput.value = employee.position || "";
+  els.employeePhoneInput.value = employee.phone || "";
+  els.employeeEmailInput.value = employee.email || "";
+  els.employeeBankInput.value = employee.bankAccount || "";
+  els.employeeJoinDateInput.value = employee.joinDate || todayKey();
+  els.employeePaydayInput.value = employee.payDay || 25;
+  els.employeeNoteInput.value = employee.note || "";
+  els.employeeStatusInput.value = employee.status || "Aktif";
+  bootstrap.Modal.getOrCreateInstance(document.querySelector("#employeeModal")).show();
+}
+
+function saveEmployee(event) {
+  event.preventDefault();
+  const id = els.employeeIdInput.value || `emp-${crypto.randomUUID()}`;
+  const existing = state.employees.find((employee) => employee.id === id);
+  const employee = {
+    id,
+    code: els.employeeCodeInput.value.trim().toUpperCase(),
+    name: els.employeeNameInput.value.trim(),
+    address: els.employeeAddressInput.value.trim(),
+    position: els.employeePositionInput.value.trim(),
+    phone: els.employeePhoneInput.value.trim(),
+    email: els.employeeEmailInput.value.trim(),
+    bankAccount: els.employeeBankInput.value.trim(),
+    joinDate: els.employeeJoinDateInput.value || todayKey(),
+    payDay: Math.min(Math.max(Number(els.employeePaydayInput.value || 25), 1), 31),
+    note: els.employeeNoteInput.value.trim(),
+    status: els.employeeStatusInput.value
+  };
+  if (existing) {
+    Object.assign(existing, employee);
+  } else {
+    state.employees.push(employee);
+  }
+  saveState();
+  bootstrap.Modal.getInstance(document.querySelector("#employeeModal")).hide();
+  resetEmployeeForm();
+  renderAll();
+}
+
+function deleteEmployee(id) {
+  const employee = state.employees.find((entry) => entry.id === id);
+  if (!employee) return;
+  if (!confirm(`Hapus data karyawan ${employee.name}?`)) return;
+  state.employees = state.employees.filter((entry) => entry.id !== id);
+  saveState();
+  renderAll();
+}
+
 function addExpense({ date, category, description, amount }) {
   state.expenses.push({
     id: `exp-${crypto.randomUUID()}`,
@@ -1786,12 +2051,13 @@ function saveStockAddition(event) {
   bootstrap.Modal.getInstance(document.querySelector("#stockModal")).hide();
   resetStockForm();
   renderAll();
-  alert(`Stok ${product.name} bertambah ${qty}. Pengeluaran ${formatMoney(amount)} tercatat.`);
+  alert(`Stok ${product.name} bertambah ${qty} ${product.unit || "PCS"}. Pengeluaran ${formatMoney(amount)} tercatat.`);
 }
 
 function resetProductForm() {
   els.productForm.reset();
   els.productIdInput.value = "";
+  els.productUnitInput.value = "PCS";
   els.productThumbnailDataInput.value = "";
   els.thumbnailPreview.src = "";
   els.thumbnailPreview.classList.remove("show");
@@ -1819,6 +2085,7 @@ function editProduct(id) {
   els.productIdInput.value = product.id;
   document.querySelector("#productCodeInput").value = product.code;
   document.querySelector("#productNameInput").value = product.name;
+  els.productUnitInput.value = product.unit || "PCS";
   setThumbnailPreview(product.thumbnail || fallbackThumb);
   els.productBrandInput.value = product.brandId;
   els.productCategoryInput.value = product.categoryId;
@@ -1856,6 +2123,7 @@ function saveProduct(event) {
     id: existing?.id || `prd-${crypto.randomUUID()}`,
     code: document.querySelector("#productCodeInput").value.trim().toUpperCase(),
     name: document.querySelector("#productNameInput").value.trim(),
+    unit: (els.productUnitInput.value.trim() || "PCS").toUpperCase(),
     thumbnail: els.productThumbnailDataInput.value || existing?.thumbnail || fallbackThumb,
     supplierId: els.productBrandInput.value,
     brandId: els.productBrandInput.value,
@@ -1904,6 +2172,7 @@ function addProductToCart(productId) {
       warehouseId: product.warehouseId,
       thumbnail: product.thumbnail,
       name: product.name,
+      unit: product.unit || "PCS",
       price: salePrice,
       priceLevel: type?.priceKey || "price1",
       customerType: type?.name || selectedCustomerTypeName(),
@@ -2041,7 +2310,7 @@ function cancelTransaction() {
 function buildReceipt(transaction) {
   const rows = transaction.items.map((item) => `
     <div class="receipt-line">
-      <span>${item.qty}x ${item.name}</span>
+      <span>${item.qty} ${item.unit || "PCS"} x ${item.name}</span>
       <span>${formatMoney(item.price * item.qty)}</span>
     </div>
   `).join("");
@@ -2188,7 +2457,7 @@ function buildBarcodeLabel(product) {
         <div class="label-name">${escapeHtml(product.name.toUpperCase())}</div>
         <div class="barcode-bars">${code39Svg(code)}</div>
         <div class="label-code">${escapeHtml(code)}</div>
-        <div class="label-price">${formatLabelPrice(product.price1)} / PCS</div>
+        <div class="label-price">${formatLabelPrice(product.price1)} / ${escapeHtml(product.unit || "PCS")}</div>
       </div>
     </div>
   `;
@@ -2248,6 +2517,7 @@ els.checkoutDrawerToggle.addEventListener("click", openCheckoutDrawer);
 els.checkoutDrawerClose.addEventListener("click", closeCheckoutDrawer);
 els.navItems.forEach((item) => item.addEventListener("click", () => switchView(item.dataset.view)));
 els.inventoryWarehouseFilter.addEventListener("change", renderInventory);
+els.inventorySearchInput.addEventListener("input", renderInventory);
 els.dashboardMonthInput.addEventListener("change", renderDashboard);
 els.productSearchInput.addEventListener("input", renderProductCards);
 els.transactionCategoryFilter.addEventListener("change", renderProductCards);
@@ -2300,6 +2570,8 @@ els.masterCustomerTypeForm.addEventListener("submit", (event) => {
   els.masterCustomerTypeNameInput.value = "";
   els.masterCustomerTypePriceInput.value = "price1";
 });
+els.employeeForm.addEventListener("submit", saveEmployee);
+els.employeeSearchInput.addEventListener("input", renderEmployees);
 els.customerTypeFilter.addEventListener("change", renderCustomers);
 els.customerSearchInput.addEventListener("input", renderCustomers);
 els.customerName.addEventListener("input", applyCustomerAutocomplete);
@@ -2376,12 +2648,14 @@ document.addEventListener("click", (event) => {
   const printBarcodeButton = event.target.closest("[data-print-barcode]");
   const deleteProductButton = event.target.closest("[data-delete-product]");
   const selectCustomerButton = event.target.closest("[data-select-customer]");
+  const editEmployeeButton = event.target.closest("[data-edit-employee]");
   const editMasterButton = event.target.closest("[data-edit-master]");
   const editCustomerTypeButton = event.target.closest("[data-edit-customer-type]");
   const deleteBrandButton = event.target.closest("[data-delete-brand]");
   const deleteCategoryButton = event.target.closest("[data-delete-category]");
   const deleteWarehouseButton = event.target.closest("[data-delete-warehouse]");
   const deleteCustomerTypeButton = event.target.closest("[data-delete-customer-type]");
+  const deleteEmployeeButton = event.target.closest("[data-delete-employee]");
   const deleteExpenseButton = event.target.closest("[data-delete-expense]");
 
   if (warehouseButton) openWarehouseEditor(warehouseButton.dataset.editWarehouse);
@@ -2397,6 +2671,7 @@ document.addEventListener("click", (event) => {
       if (state.customerTypes.some((type) => type.name === customer.type)) setCustomerTypeValue(customer.type);
     }
   }
+  if (editEmployeeButton) editEmployee(editEmployeeButton.dataset.editEmployee);
   if (editMasterButton) editMaster(editMasterButton.dataset.editMaster, editMasterButton.dataset.masterId);
   if (editCustomerTypeButton) editCustomerType(editCustomerTypeButton.dataset.editCustomerType);
   if (removeButton) {
@@ -2425,6 +2700,7 @@ document.addEventListener("click", (event) => {
   if (deleteCategoryButton) deleteMaster("category", deleteCategoryButton.dataset.deleteCategory);
   if (deleteWarehouseButton) deleteWarehouse(deleteWarehouseButton.dataset.deleteWarehouse);
   if (deleteCustomerTypeButton) deleteCustomerType(deleteCustomerTypeButton.dataset.deleteCustomerType);
+  if (deleteEmployeeButton) deleteEmployee(deleteEmployeeButton.dataset.deleteEmployee);
   if (deleteExpenseButton) deleteExpense(deleteExpenseButton.dataset.deleteExpense);
   if (!event.target.closest("#customerName") && !event.target.closest("#customerSuggestionPanel")) {
     els.customerSuggestionPanel.classList.add("d-none");
@@ -2432,6 +2708,10 @@ document.addEventListener("click", (event) => {
 });
 
 document.querySelector("#warehouseModal").addEventListener("hidden.bs.modal", resetWarehouseForm);
+document.querySelector("#employeeModal").addEventListener("show.bs.modal", () => {
+  if (!els.employeeIdInput.value) resetEmployeeForm();
+});
+document.querySelector("#employeeModal").addEventListener("hidden.bs.modal", resetEmployeeForm);
 document.querySelector("#productModal").addEventListener("hidden.bs.modal", resetProductForm);
 document.querySelector("#stockModal").addEventListener("hidden.bs.modal", resetStockForm);
 

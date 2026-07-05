@@ -454,8 +454,51 @@ body {
   min-width: 88px;
 }
 
+.inventory-table-wrap {
+  position: relative;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
 .inventory-table {
-  min-width: 1520px;
+  min-width: 1880px;
+  table-layout: auto;
+}
+
+.inventory-table th,
+.inventory-table td {
+  white-space: nowrap;
+}
+
+.inventory-table th:nth-child(3),
+.inventory-table td:nth-child(3) {
+  min-width: 240px;
+  white-space: normal;
+}
+
+.inventory-table th:nth-child(5),
+.inventory-table td:nth-child(5),
+.inventory-table th:nth-child(6),
+.inventory-table td:nth-child(6),
+.inventory-table th:nth-child(7),
+.inventory-table td:nth-child(7) {
+  min-width: 150px;
+}
+
+.inventory-table th:last-child,
+.inventory-table td:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  min-width: 140px;
+  background: var(--surface);
+  box-shadow: -10px 0 18px rgba(23, 33, 43, .08);
+}
+
+.inventory-table thead th:last-child {
+  z-index: 3;
+  background: var(--surface-soft);
 }
 
 .thumb {
@@ -576,6 +619,73 @@ body {
 
 .master-table {
   min-width: 560px;
+}
+
+.employee-table-wrap {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.employee-table {
+  min-width: 1540px;
+}
+
+.employee-table th,
+.employee-table td {
+  white-space: nowrap;
+}
+
+.employee-table th:nth-child(3),
+.employee-table td:nth-child(3),
+.employee-table th:nth-child(10),
+.employee-table td:nth-child(10) {
+  min-width: 220px;
+  white-space: normal;
+}
+
+.salary-reminder-panel {
+  margin-bottom: 1rem;
+}
+
+.salary-reminder-card {
+  display: grid;
+  gap: .75rem;
+  padding: .9rem;
+  border: 1px solid #b7dfd6;
+  border-radius: 8px;
+  background: #ecfdf8;
+}
+
+.salary-reminder-card.muted {
+  border-color: var(--line);
+  background: var(--surface-soft);
+}
+
+.salary-reminder-card strong,
+.salary-reminder-card span {
+  display: block;
+}
+
+.salary-reminder-card span {
+  color: var(--muted);
+  font-size: .86rem;
+  font-weight: 700;
+}
+
+.salary-reminder-list {
+  display: grid;
+  gap: .5rem;
+}
+
+.salary-reminder-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .55rem;
+  border-radius: 8px;
+  background: var(--surface);
 }
 
 .master-table .btn + .btn,
