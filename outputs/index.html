@@ -1,0 +1,1015 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SS Autolight POS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main id="loginScreen" class="login-shell">
+      <section class="login-panel">
+        <div class="brand-mark">SS</div>
+        <div>
+          <p class="eyebrow">Custom Lamp Workshop</p>
+          <h1>SS Autolight</h1>
+          <p class="text-muted mb-4">Kasir bengkel lampu dengan transaksi, stok multi gudang, dan laporan harian.</p>
+        </div>
+
+        <form id="loginForm" class="vstack gap-3">
+          <div>
+            <label class="form-label" for="roleSelect">Masuk sebagai</label>
+            <select id="roleSelect" class="form-select form-select-lg">
+              <option value="Super Admin">Super Admin</option>
+              <option value="Owner">Owner</option>
+              <option value="Kasir">Kasir</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="pinInput">PIN Demo</label>
+            <input id="pinInput" class="form-control form-control-lg" type="password" value="1234" autocomplete="current-password">
+            <div class="form-text">Gunakan PIN demo 1234.</div>
+          </div>
+          <button class="btn btn-primary btn-lg w-100" type="submit">
+            <i class="bi bi-box-arrow-in-right"></i>
+            Masuk Dashboard
+          </button>
+        </form>
+      </section>
+
+      <section class="login-aside">
+        <div class="metric-strip">
+          <div>
+            <span>Gudang</span>
+            <strong>2 Aktif</strong>
+          </div>
+          <div>
+            <span>Produk</span>
+            <strong>8 Item</strong>
+          </div>
+          <div>
+            <span>Mode</span>
+            <strong>IDR</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <main id="appShell" class="app-shell d-none">
+      <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+      <aside id="sidebar" class="sidebar">
+        <div class="brand-row">
+          <div class="brand-mark small">SS</div>
+          <div>
+            <strong>SS Autolight</strong>
+            <span>Bengkel Custom Lampu</span>
+          </div>
+        </div>
+        <nav class="nav-list" aria-label="Navigasi utama">
+          <button class="nav-item active" data-view="dashboardView" type="button">
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+          </button>
+          <div class="nav-group">
+            <button class="nav-parent" type="button" data-bs-toggle="collapse" data-bs-target="#masterMenu" aria-expanded="true" aria-controls="masterMenu">
+              <span><i class="bi bi-database"></i> Data Master</span>
+              <i class="bi bi-chevron-down"></i>
+            </button>
+            <div id="masterMenu" class="nav-sublist collapse show">
+              <button class="nav-item nav-subitem" data-view="masterBrandView" data-title="Master Supplier" type="button">Supplier</button>
+              <button class="nav-item nav-subitem" data-view="masterCategoryView" data-title="Master Kategori" type="button">Kategori</button>
+              <button class="nav-item nav-subitem" data-view="masterWarehouseView" data-title="Master Gudang" type="button">Gudang</button>
+              <button class="nav-item nav-subitem" data-view="masterCustomerTypeView" data-title="Master Jenis Pelanggan" type="button">Jenis Pelanggan</button>
+            </div>
+          </div>
+          <button class="nav-item" data-view="inventoryView" type="button">
+            <i class="bi bi-box-seam"></i>
+            Inventori
+          </button>
+          <button class="nav-item" data-view="transactionView" type="button">
+            <i class="bi bi-receipt"></i>
+            Transaksi
+          </button>
+          <button class="nav-item" data-view="customerView" type="button">
+            <i class="bi bi-people"></i>
+            Pelanggan
+          </button>
+          <button class="nav-item manager-only" data-view="expenseView" type="button">
+            <i class="bi bi-wallet2"></i>
+            Pengeluaran
+          </button>
+          <div class="nav-group">
+            <button class="nav-parent" type="button" data-bs-toggle="collapse" data-bs-target="#reportMenu" aria-expanded="true" aria-controls="reportMenu">
+              <span><i class="bi bi-bar-chart-line"></i> Laporan</span>
+              <i class="bi bi-chevron-down"></i>
+            </button>
+            <div id="reportMenu" class="nav-sublist collapse show">
+              <button class="nav-item nav-subitem" data-view="reportView" data-title="Laporan Penjualan" type="button">Laporan Penjualan</button>
+              <button class="nav-item nav-subitem manager-only" data-view="expenseReportView" data-title="Laporan Pengeluaran" type="button">Laporan Pengeluaran</button>
+            </div>
+          </div>
+          <button class="nav-item manager-only" data-view="settingsView" type="button">
+            <i class="bi bi-gear"></i>
+            Pengaturan
+          </button>
+        </nav>
+        <button id="logoutBtn" class="btn btn-outline-light w-100 mt-auto" type="button">
+          <i class="bi bi-door-open"></i>
+          Keluar
+        </button>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <button id="mobileMenuBtn" class="btn btn-outline-dark icon-btn mobile-only" type="button" aria-label="Buka menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <div>
+            <p class="eyebrow mb-1">Point of Sale</p>
+            <h2 id="pageTitle">Dashboard</h2>
+          </div>
+          <div class="user-chip">
+            <i class="bi bi-person-badge"></i>
+            <span id="currentUser">Super Admin</span>
+          </div>
+        </header>
+
+        <section id="dashboardView" class="view active-view">
+          <div class="stat-grid">
+            <article class="stat-card">
+              <span>Omzet Hari Ini</span>
+              <strong id="todayRevenue">Rp0</strong>
+              <small>Transaksi terbayar</small>
+            </article>
+            <article class="stat-card">
+              <span>Stok Barang Menipis</span>
+              <strong id="lowStockCount">0</strong>
+              <small>Perlu restock</small>
+            </article>
+            <article class="stat-card">
+              <span>Total Barang Semua Gudang</span>
+              <strong id="totalStock">0</strong>
+              <small>Semua gudang</small>
+            </article>
+          </div>
+
+          <div class="dashboard-grid mt-4">
+            <section class="panel">
+              <div class="panel-heading flex-wrap gap-3">
+                <div>
+                  <h3>Grafik Transaksi/Penjualan</h3>
+                  <p id="dashboardChartCaption">Periode bulan berjalan.</p>
+                </div>
+                <input id="dashboardMonthInput" class="form-control month-picker" type="month">
+              </div>
+              <div id="dashboardSalesChart" class="monthly-chart"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>Aktivitas Terbaru</h3>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>No Nota</th>
+                      <th>Pelanggan</th>
+                      <th>Status</th>
+                      <th class="text-end">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recentTransactions"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section id="masterBrandView" class="view">
+          <section class="panel">
+            <div class="panel-heading flex-wrap gap-3">
+              <div>
+                <h3>Master Supplier</h3>
+                <p>Kelola supplier produk lampu dan aksesoris.</p>
+              </div>
+              <form id="masterBrandForm" class="inline-master-form manager-only">
+                <input id="masterBrandCodeInput" class="form-control" type="text" required placeholder="Kode">
+                <input id="masterBrandNameInput" class="form-control" type="text" required placeholder="Nama supplier">
+                <button class="btn btn-primary" type="submit">
+                  <i class="bi bi-plus-lg"></i>
+                  Tambah
+                </button>
+              </form>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle master-table">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th class="text-end">Stok</th>
+                    <th class="text-end">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="masterBrandGrid"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="masterCategoryView" class="view">
+          <section class="panel">
+            <div class="panel-heading flex-wrap gap-3">
+              <div>
+                <h3>Master Kategori</h3>
+                <p>Kelola kategori untuk filter inventori dan transaksi.</p>
+              </div>
+              <form id="masterCategoryForm" class="inline-master-form manager-only">
+                <input id="masterCategoryCodeInput" class="form-control" type="text" required placeholder="Kode">
+                <input id="masterCategoryNameInput" class="form-control" type="text" required placeholder="Nama kategori">
+                <button class="btn btn-primary" type="submit">
+                  <i class="bi bi-plus-lg"></i>
+                  Tambah
+                </button>
+              </form>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle master-table">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th class="text-end">Stok</th>
+                    <th class="text-end">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="masterCategoryGrid"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="masterWarehouseView" class="view">
+          <section class="panel">
+            <div class="panel-heading flex-wrap gap-3">
+              <div>
+                <h3>Master Gudang</h3>
+                <p>Gudang awal: Gudang Utama dan Gudang Cabang, bisa ditambah oleh owner/admin.</p>
+              </div>
+              <form id="masterWarehouseForm" class="inline-master-form manager-only">
+                <input id="masterWarehouseCodeInput" class="form-control" type="text" required placeholder="Kode">
+                <input id="masterWarehouseNameInput" class="form-control" type="text" required placeholder="Nama gudang">
+                <button class="btn btn-primary" type="submit">
+                  <i class="bi bi-plus-lg"></i>
+                  Tambah
+                </button>
+              </form>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle master-table">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th class="text-end">Stok</th>
+                    <th class="text-end">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="masterWarehouseGrid"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="masterCustomerTypeView" class="view">
+          <section class="panel">
+            <div class="panel-heading flex-wrap gap-3">
+              <div>
+                <h3>Master Jenis Pelanggan</h3>
+                <p>Atur jenis pelanggan dan harga jual yang digunakan saat transaksi.</p>
+              </div>
+              <form id="masterCustomerTypeForm" class="inline-master-form manager-only">
+                <input id="masterCustomerTypeCodeInput" class="form-control" type="text" required placeholder="Kode">
+                <input id="masterCustomerTypeNameInput" class="form-control" type="text" required placeholder="Nama jenis pelanggan">
+                <select id="masterCustomerTypePriceInput" class="form-select" required>
+                  <option value="price1">Harga Jual 1</option>
+                  <option value="price2">Harga Jual 2</option>
+                  <option value="price3">Harga Jual 3</option>
+                  <option value="price4">Harga Jual 4</option>
+                </select>
+                <button class="btn btn-primary" type="submit">
+                  <i class="bi bi-plus-lg"></i>
+                  Tambah
+                </button>
+              </form>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle master-table">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th>Harga Jual</th>
+                    <th class="text-end">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="masterCustomerTypeGrid"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="inventoryView" class="view">
+          <section class="panel">
+            <div class="panel-heading flex-wrap gap-3">
+              <div>
+                <h3>Inventori Barang</h3>
+                <p>Supplier, kategori, stok per gudang, dan empat level harga jual.</p>
+              </div>
+              <div class="toolbar">
+                <select id="inventoryWarehouseFilter" class="form-select"></select>
+                <button class="btn btn-outline-primary manager-only" data-bs-toggle="modal" data-bs-target="#stockModal" type="button">
+                  <i class="bi bi-plus-circle"></i>
+                  Tambah Stok
+                </button>
+                <button class="btn btn-primary manager-only" data-bs-toggle="modal" data-bs-target="#productModal" type="button">
+                  <i class="bi bi-plus-lg"></i>
+                  Barang
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle inventory-table">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Thumbnail</th>
+                    <th>Nama</th>
+                    <th>Supplier</th>
+                    <th>Kategori</th>
+                    <th>Gudang</th>
+                    <th class="text-end cost-only">Harga Modal</th>
+                    <th class="text-end">Jual 1</th>
+                    <th class="text-end">Jual 2</th>
+                    <th class="text-end">Jual 3</th>
+                    <th class="text-end">Jual 4</th>
+                    <th class="text-end">Stok</th>
+                    <th class="text-end">Minimal</th>
+                    <th>Status</th>
+                    <th class="text-end">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="inventoryTable"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="customerView" class="view">
+          <section class="panel">
+            <div class="panel-heading flex-wrap gap-3">
+              <div>
+                <h3>Data Pelanggan</h3>
+                <p>Daftar pelanggan dari transaksi, dengan filter jenis pelanggan.</p>
+              </div>
+              <div class="toolbar">
+                <input id="customerSearchInput" class="form-control" type="search" placeholder="Cari nama pelanggan">
+                <select id="customerTypeFilter" class="form-select">
+                </select>
+              </div>
+            </div>
+            <div class="customer-summary">
+              <div>
+                <span>Total Pelanggan</span>
+                <strong id="customerCount">0</strong>
+              </div>
+              <div>
+                <span>Total Belanja</span>
+                <strong id="customerRevenue">Rp0</strong>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Jenis</th>
+                    <th class="text-end">Transaksi</th>
+                    <th class="text-end">Total Belanja</th>
+                    <th>Terakhir</th>
+                  </tr>
+                </thead>
+                <tbody id="customerTable"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="transactionView" class="view">
+          <div class="transaction-grid">
+            <section class="panel">
+              <div class="panel-heading flex-wrap gap-3">
+                <div>
+                  <h3>Item Transaksi</h3>
+                  <p>Klik kartu barang untuk menambahkan item ke ringkasan.</p>
+                </div>
+                <span id="invoiceNumber" class="invoice-pill"></span>
+              </div>
+              <div class="catalog-toolbar">
+                <input id="productSearchInput" class="form-control" type="search" placeholder="Cari kode, nama, supplier, kategori">
+                <select id="transactionCategoryFilter" class="form-select"></select>
+                <div class="barcode-scan">
+                  <i class="bi bi-upc-scan"></i>
+                  <input id="barcodeScanInput" class="form-control" type="text" inputmode="text" autocomplete="off" placeholder="Scan / ketik kode barcode">
+                  <button id="barcodeScanBtn" class="btn btn-outline-dark" type="button">
+                    <i class="bi bi-plus-circle"></i>
+                    Tambah
+                  </button>
+                </div>
+              </div>
+              <div id="productCardGrid" class="product-card-grid"></div>
+            </section>
+
+            <button id="checkoutDrawerToggle" class="checkout-drawer-toggle mobile-only" type="button">
+              <span>
+                <i class="bi bi-bag-check"></i>
+                Ringkasan
+              </span>
+              <strong id="mobileCheckoutTotal">Rp0</strong>
+            </button>
+
+            <aside class="panel checkout-panel">
+              <div class="checkout-drawer-handle mobile-only">
+                <span></span>
+                <button id="checkoutDrawerClose" class="btn btn-sm btn-light" type="button" aria-label="Tutup ringkasan">
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </div>
+              <div class="panel-heading">
+                <h3>Ringkasan</h3>
+              </div>
+              <div class="checkout-form">
+                <label class="form-label" for="customerName">Nama Pelanggan</label>
+                <input id="customerName" class="form-control" type="text" placeholder="Contoh: Pak Andi" autocomplete="off">
+                <datalist id="customerSuggestions"></datalist>
+                <div id="customerSuggestionPanel" class="customer-suggestion-panel d-none"></div>
+
+                <label class="form-label" for="customerType">Jenis Pelanggan</label>
+                <select id="customerType" class="form-select"></select>
+              </div>
+
+              <div class="cart-list" id="cartTable"></div>
+
+              <div class="summary-row">
+                <span>Subtotal Barang</span>
+                <strong id="productSubtotal">Rp0</strong>
+              </div>
+              <div class="summary-row">
+                <span>Biaya Jasa</span>
+                <input id="servicePriceInput" class="form-control form-control-sm text-end" type="number" min="0" step="1000" value="0">
+              </div>
+              <div class="summary-row">
+                <span>Diskon</span>
+                <input id="discountInput" class="form-control form-control-sm text-end" type="number" min="0" step="1000" value="0">
+              </div>
+              <div class="summary-total">
+                <span>Total</span>
+                <strong id="grandTotal">Rp0</strong>
+              </div>
+
+              <div class="payment-options" id="paymentOptions" role="radiogroup" aria-label="Metode pembayaran">
+                <input class="btn-check" type="radio" name="paymentMethod" id="payTunai" value="Tunai" checked>
+                <label class="btn btn-outline-dark" for="payTunai"><i class="bi bi-cash"></i> Tunai</label>
+                <input class="btn-check" type="radio" name="paymentMethod" id="payTransfer" value="Transfer">
+                <label class="btn btn-outline-dark" for="payTransfer"><i class="bi bi-bank"></i> Transfer</label>
+                <input class="btn-check" type="radio" name="paymentMethod" id="payQris" value="QRIS">
+                <label class="btn btn-outline-dark" for="payQris"><i class="bi bi-qr-code"></i> QRIS</label>
+                <input class="btn-check" type="radio" name="paymentMethod" id="payDebit" value="Debit">
+                <label class="btn btn-outline-dark" for="payDebit"><i class="bi bi-credit-card"></i> Debit</label>
+              </div>
+
+              <div class="checkout-actions">
+                <button id="payTransactionBtn" class="btn btn-primary btn-lg" type="button">
+                  <i class="bi bi-check2-circle"></i>
+                  Bayar
+                </button>
+                <button id="printReceiptBtn" class="btn btn-outline-dark btn-lg" type="button">
+                  <i class="bi bi-printer"></i>
+                  Cetak Struk
+                </button>
+                <button id="holdTransactionBtn" class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-pause-circle"></i>
+                  Hold
+                </button>
+                <button id="cancelTransactionBtn" class="btn btn-danger" type="button">
+                  <i class="bi bi-x-circle"></i>
+                  Batalkan
+                </button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section id="expenseView" class="view">
+          <section class="panel">
+            <div class="panel-heading flex-wrap gap-3">
+              <div>
+                <h3>Pengeluaran</h3>
+                <p>Catat biaya operasional, pembelian stok, pajak/beacukai, dan kebutuhan lainnya.</p>
+              </div>
+              <form id="expenseForm" class="expense-form manager-only">
+                <input id="expenseDateInput" class="form-control" type="date" required>
+                <select id="expenseCategoryInput" class="form-select" required>
+                  <option>Biaya Listrik</option>
+                  <option>Gaji Karyawan</option>
+                  <option>Belanja Barang</option>
+                  <option>Pajak/Beacukai</option>
+                  <option>Lainnya</option>
+                </select>
+                <input id="expenseDescriptionInput" class="form-control" type="text" required placeholder="Keterangan">
+                <input id="expenseAmountInput" class="form-control" type="number" min="0" step="1000" required placeholder="Nominal">
+                <button class="btn btn-primary" type="submit">
+                  <i class="bi bi-plus-lg"></i>
+                  Simpan
+                </button>
+              </form>
+            </div>
+            <div class="report-summary">
+              <div>
+                <span>Total Pengeluaran</span>
+                <strong id="expenseTotal">Rp0</strong>
+              </div>
+              <div>
+                <span>Belanja Barang</span>
+                <strong id="expenseStockTotal">Rp0</strong>
+              </div>
+              <div>
+                <span>Cashflow Bersih</span>
+                <strong id="netCashflow">Rp0</strong>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Kategori</th>
+                    <th>Keterangan</th>
+                    <th class="text-end">Nominal</th>
+                    <th class="text-end">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="expenseTable"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="reportView" class="view">
+          <section class="panel">
+            <div class="panel-heading flex-wrap gap-3">
+              <div>
+                <h3>Laporan Penjualan</h3>
+                <p>Detail, rekap, penjualan per gudang, per barang, dan per pelanggan.</p>
+              </div>
+              <div class="toolbar">
+                <input id="dateFrom" class="form-control" type="date">
+                <input id="dateTo" class="form-control" type="date">
+                <select id="reportStatusFilter" class="form-select">
+                  <option value="all">Semua Status</option>
+                  <option value="Paid">Penjualan / Paid</option>
+                  <option value="Hold">Hold</option>
+                </select>
+                <select id="reportSaleFilter" class="form-select">
+                  <option value="all">Semua Transaksi</option>
+                  <option value="product">Penjualan Barang</option>
+                  <option value="service">Jasa</option>
+                </select>
+                <select id="reportWarehouseFilter" class="form-select"></select>
+                <button id="printReportBtn" class="btn btn-outline-dark" type="button">
+                  <i class="bi bi-printer"></i>
+                  Print
+                </button>
+                <button id="resetReportFilter" class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-arrow-clockwise"></i>
+                </button>
+              </div>
+            </div>
+            <div class="report-tabs" role="tablist" aria-label="Sub laporan penjualan">
+              <button class="report-tab active" data-report-mode="detail" type="button">Detail</button>
+              <button class="report-tab" data-report-mode="summary" type="button">Rekap</button>
+              <button class="report-tab" data-report-mode="warehouse" type="button">Per Gudang/Cabang</button>
+              <button class="report-tab" data-report-mode="product" type="button">Per Barang</button>
+              <button class="report-tab" data-report-mode="customer" type="button">Per Pelanggan</button>
+            </div>
+            <div class="report-summary">
+              <div>
+                <span>Total Omzet</span>
+                <strong id="reportRevenue">Rp0</strong>
+              </div>
+              <div>
+                <span>Total Transaksi</span>
+                <strong id="reportCount">0</strong>
+              </div>
+              <div>
+                <span>Jasa Tercatat</span>
+                <strong id="reportService">Rp0</strong>
+              </div>
+              <div>
+                <span>Barang Terjual</span>
+                <strong id="reportItemQty">0</strong>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead id="reportTableHead"></thead>
+                <tbody id="reportTable"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="expenseReportView" class="view">
+          <section class="panel">
+            <div class="panel-heading flex-wrap gap-3">
+              <div>
+                <h3>Laporan Pengeluaran</h3>
+                <p>Detail, rekap harian, dan pengeluaran per kategori.</p>
+              </div>
+              <div class="toolbar">
+                <input id="expenseReportDateFrom" class="form-control" type="date">
+                <input id="expenseReportDateTo" class="form-control" type="date">
+                <select id="expenseReportCategoryFilter" class="form-select"></select>
+                <button id="printExpenseReportBtn" class="btn btn-outline-dark" type="button">
+                  <i class="bi bi-printer"></i>
+                  Print
+                </button>
+                <button id="resetExpenseReportFilter" class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-arrow-clockwise"></i>
+                </button>
+              </div>
+            </div>
+            <div class="report-tabs" role="tablist" aria-label="Sub laporan pengeluaran">
+              <button class="report-tab active" data-expense-report-mode="detail" type="button">Detail</button>
+              <button class="report-tab" data-expense-report-mode="summary" type="button">Rekap</button>
+              <button class="report-tab" data-expense-report-mode="category" type="button">Per Kategori</button>
+            </div>
+            <div class="report-summary">
+              <div>
+                <span>Total Pengeluaran</span>
+                <strong id="expenseReportTotal">Rp0</strong>
+              </div>
+              <div>
+                <span>Jumlah Catatan</span>
+                <strong id="expenseReportCount">0</strong>
+              </div>
+              <div>
+                <span>Kategori Aktif</span>
+                <strong id="expenseReportCategoryCount">0</strong>
+              </div>
+              <div>
+                <span>Rata-rata</span>
+                <strong id="expenseReportAverage">Rp0</strong>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead id="expenseReportTableHead"></thead>
+                <tbody id="expenseReportTable"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="settingsView" class="view">
+          <section class="panel">
+            <div class="panel-heading flex-wrap gap-3">
+              <div>
+                <h3>Pengaturan Perangkat</h3>
+                <p>Konfigurasi printer struk, printer barcode, scanner barcode, dan printer laporan untuk demo POS.</p>
+              </div>
+            </div>
+            <form id="settingsForm" class="settings-grid manager-only">
+              <label>
+                <span>Printer Struk</span>
+                <select id="receiptPrinterInput" class="form-select">
+                  <option value="browser">Default Browser</option>
+                  <option value="thermal-58">Thermal 58mm</option>
+                  <option value="thermal-80">Thermal 80mm</option>
+                  <option value="pdf">PDF / Print Preview</option>
+                </select>
+              </label>
+              <label>
+                <span>Printer Barcode</span>
+                <select id="barcodePrinterInput" class="form-select">
+                  <option value="browser">Default Browser</option>
+                  <option value="label-40x30">Label 40 x 30mm</option>
+                  <option value="roll-76x30">Roll Barcode 76 x 30mm</option>
+                </select>
+              </label>
+              <label>
+                <span>Printer Laporan</span>
+                <select id="reportPrinterInput" class="form-select">
+                  <option value="browser">Default Browser</option>
+                  <option value="a4-portrait">A4 Portrait</option>
+                  <option value="a4-landscape">A4 Landscape</option>
+                  <option value="pdf">PDF</option>
+                </select>
+              </label>
+              <label>
+                <span>Mode Scanner Barcode</span>
+                <select id="scannerModeInput" class="form-select">
+                  <option value="enter">Tambah saat scanner kirim Enter</option>
+                  <option value="delay">Tambah otomatis setelah jeda</option>
+                  <option value="manual">Manual tombol Tambah</option>
+                </select>
+              </label>
+              <label>
+                <span>Prefix Scanner</span>
+                <input id="scannerPrefixInput" class="form-control" type="text" placeholder="Opsional, contoh: SS-">
+              </label>
+              <div class="settings-actions">
+                <button class="btn btn-primary" type="submit">
+                  <i class="bi bi-save"></i>
+                  Simpan Pengaturan
+                </button>
+                <span id="settingsStatus" class="settings-status"></span>
+              </div>
+            </form>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <div class="modal fade" id="warehouseModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <form id="warehouseForm" class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5">Tambah / Edit Gudang</h2>
+            <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <input id="warehouseIdInput" type="hidden">
+            <label class="form-label" for="warehouseNameInput">Nama Gudang</label>
+            <input id="warehouseNameInput" class="form-control" type="text" required placeholder="Gudang Cabang Baru">
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal" type="button">Batal</button>
+            <button class="btn btn-primary" type="submit">Simpan Gudang</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade" id="brandModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <form id="brandForm" class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5">Master Supplier</h2>
+            <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <label class="form-label" for="brandNameInput">Nama Supplier</label>
+            <div class="input-group">
+              <input id="brandNameInput" class="form-control" type="text" required placeholder="Contoh: Shopee">
+              <button class="btn btn-primary" type="submit">Tambah</button>
+            </div>
+            <div id="brandList" class="master-list mt-3"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade" id="categoryModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <form id="categoryForm" class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5">Master Kategori</h2>
+            <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <label class="form-label" for="categoryNameInput">Nama Kategori</label>
+            <div class="input-group">
+              <input id="categoryNameInput" class="form-control" type="text" required placeholder="Contoh: Projector">
+              <button class="btn btn-primary" type="submit">Tambah</button>
+            </div>
+            <div id="categoryList" class="master-list mt-3"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <form id="productForm" class="modal-content">
+          <div class="modal-header">
+            <h2 id="productModalTitle" class="modal-title fs-5">Input Inventori Barang</h2>
+            <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <input id="productIdInput" type="hidden">
+            <div class="row g-3">
+              <div class="col-md-3">
+                <label class="form-label" for="productCodeInput">Kode</label>
+                <input id="productCodeInput" class="form-control" type="text" required>
+              </div>
+              <div class="col-md-5">
+                <label class="form-label" for="productNameInput">Nama Barang</label>
+                <input id="productNameInput" class="form-control" type="text" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="productThumbnailInput">Thumbnail</label>
+                <input id="productThumbnailInput" class="visually-hidden" type="file" accept="image/*">
+                <input id="productThumbnailDataInput" type="hidden">
+                <button id="thumbnailDropzone" class="dropzone" type="button">
+                  <img id="thumbnailPreview" src="" alt="">
+                  <span><i class="bi bi-cloud-arrow-up"></i> Upload atau drop gambar</span>
+                  <small>PNG, JPG, WEBP, GIF</small>
+                </button>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" for="productBrandInput">Supplier</label>
+                <select id="productBrandInput" class="form-select" required></select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" for="productCategoryInput">Kategori</label>
+                <select id="productCategoryInput" class="form-select" required></select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" for="productWarehouseInput">Gudang</label>
+                <select id="productWarehouseInput" class="form-select" required></select>
+              </div>
+              <div class="col-md-3 cost-field">
+                <label class="form-label" for="productCostInput">Harga Modal</label>
+                <input id="productCostInput" class="form-control" type="number" min="0" step="1000">
+              </div>
+              <div class="col-12">
+                <div class="price-profit-box">
+                  <div class="price-profit-head">
+                    <strong>Harga Jual</strong>
+                    <strong>Untung</strong>
+                  </div>
+                  <div class="price-profit-row">
+                    <label for="productPriceInput">Harga Jual 1</label>
+                    <input id="productPriceInput" class="form-control" type="number" min="0" step="1000" required>
+                    <div class="input-group">
+                      <input id="productProfit1Input" class="form-control" type="number" step="0.01" min="-100">
+                      <span class="input-group-text">%</span>
+                    </div>
+                  </div>
+                  <div class="price-profit-row">
+                    <label for="productPrice2Input">Harga Jual 2</label>
+                    <input id="productPrice2Input" class="form-control" type="number" min="0" step="1000" required>
+                    <div class="input-group">
+                      <input id="productProfit2Input" class="form-control" type="number" step="0.01" min="-100">
+                      <span class="input-group-text">%</span>
+                    </div>
+                  </div>
+                  <div class="price-profit-row">
+                    <label for="productPrice3Input">Harga Jual 3</label>
+                    <input id="productPrice3Input" class="form-control" type="number" min="0" step="1000" required>
+                    <div class="input-group">
+                      <input id="productProfit3Input" class="form-control" type="number" step="0.01" min="-100">
+                      <span class="input-group-text">%</span>
+                    </div>
+                  </div>
+                  <div class="price-profit-row">
+                    <label for="productPrice4Input">Harga Jual 4</label>
+                    <input id="productPrice4Input" class="form-control" type="number" min="0" step="1000" required>
+                    <div class="input-group">
+                      <input id="productProfit4Input" class="form-control" type="number" step="0.01" min="-100">
+                      <span class="input-group-text">%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="productStockInput">Stok Awal</label>
+                <input id="productStockInput" class="form-control" type="number" min="0" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="productMinInput">Minimal Stok</label>
+                <input id="productMinInput" class="form-control" type="number" min="0" value="3" required>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal" type="button">Batal</button>
+            <button class="btn btn-primary" type="submit">Simpan Barang</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade" id="stockModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <form id="stockForm" class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5">Tambah Stok Barang</h2>
+            <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="stockProductInput">Pilih Barang</label>
+                <select id="stockProductInput" class="form-select" required></select>
+              </div>
+              <div class="col-md-6">
+                <div id="stockProductInfo" class="stock-info">Pilih barang untuk melihat informasi stok dan supplier.</div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" for="stockQtyInput">Jumlah Stok</label>
+                <input id="stockQtyInput" class="form-control" type="number" min="1" required>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" for="stockCostInput">Harga Beli / Modal</label>
+                <input id="stockCostInput" class="form-control" type="number" min="0" step="1000" required>
+              </div>
+              <div class="col-12">
+                <div class="price-profit-box">
+                  <div class="price-profit-head">
+                    <strong>Harga Jual</strong>
+                    <strong>Untung</strong>
+                  </div>
+                  <div class="price-profit-row">
+                    <label for="stockPrice1Input">Harga Jual 1</label>
+                    <input id="stockPrice1Input" class="form-control" type="number" min="0" step="1000" required>
+                    <div class="input-group">
+                      <input id="stockProfit1Input" class="form-control" type="number" step="0.01" min="-100">
+                      <span class="input-group-text">%</span>
+                    </div>
+                  </div>
+                  <div class="price-profit-row">
+                    <label for="stockPrice2Input">Harga Jual 2</label>
+                    <input id="stockPrice2Input" class="form-control" type="number" min="0" step="1000" required>
+                    <div class="input-group">
+                      <input id="stockProfit2Input" class="form-control" type="number" step="0.01" min="-100">
+                      <span class="input-group-text">%</span>
+                    </div>
+                  </div>
+                  <div class="price-profit-row">
+                    <label for="stockPrice3Input">Harga Jual 3</label>
+                    <input id="stockPrice3Input" class="form-control" type="number" min="0" step="1000" required>
+                    <div class="input-group">
+                      <input id="stockProfit3Input" class="form-control" type="number" step="0.01" min="-100">
+                      <span class="input-group-text">%</span>
+                    </div>
+                  </div>
+                  <div class="price-profit-row">
+                    <label for="stockPrice4Input">Harga Jual 4</label>
+                    <input id="stockPrice4Input" class="form-control" type="number" min="0" step="1000" required>
+                    <div class="input-group">
+                      <input id="stockProfit4Input" class="form-control" type="number" step="0.01" min="-100">
+                      <span class="input-group-text">%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="stockNoteInput">Catatan Pengeluaran</label>
+                <input id="stockNoteInput" class="form-control" type="text" placeholder="Belanja stok barang">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal" type="button">Batal</button>
+            <button class="btn btn-primary" type="submit">Simpan Stok & Pengeluaran</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade" id="paymentSuccessModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5">Pembayaran Berhasil</h2>
+            <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <p class="mb-0">Transaksi sudah diproses dan tersimpan. Struk siap dicetak.</p>
+          </div>
+          <div class="modal-footer">
+            <button id="modalPrintReceiptBtn" class="btn btn-primary" type="button">
+              <i class="bi bi-printer"></i>
+              Cetak Struk
+            </button>
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal" type="button">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="receiptArea" class="receipt"></section>
+    <section id="barcodeArea" class="barcode-print"></section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
